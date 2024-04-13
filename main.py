@@ -426,7 +426,7 @@ async def account_login(bot: Client, m: Message):
             
             if "jwplayer" in url:
                 headers = {
-                    'Host': 'api.classplusapp.com',
+                    'Host': 'api.classplusapp.com',"https://api.edukemy.com/videodetails/"),
                     'x-access-token': 'eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgzNjkyMTIsIm9yZ0lkIjoyNjA1LCJ0eXBlIjoxLCJtb2JpbGUiOiI5MTcwODI3NzQyODkiLCJuYW1lIjoiQWNlIiwiZW1haWwiOm51bGwsImlzRmlyc3RMb2dpbiI6dHJ1ZSwiZGVmYXVsdExhbmd1YWdlIjpudWxsLCJjb3VudHJ5Q29kZSI6IklOIiwiaXNJbnRlcm5hdGlvbmFsIjowLCJpYXQiOjE2NDMyODE4NzcsImV4cCI6MTY0Mzg4NjY3N30.hM33P2ai6ivdzxPPfm01LAd4JWv-vnrSxGXqvCirCSpUfhhofpeqyeHPxtstXwe0',
                     'user-agent': 'Mobile-Android',
                     'app-version': '1.4.37.1',
@@ -475,6 +475,24 @@ async def account_login(bot: Client, m: Message):
                 download_cmd = f"{cmd} -R 25 --fragment-retries 25 --external-downloader aria2c --downloader-args 'aria2c: -x 16 -j 32'"
                 os.system(download_cmd)
                 
+        def visionpdf(self):
+        cookies = {
+            'PHPSESSID': self.token,
+        }
+        headers = {
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
+        }
+        response = requests.get(self.url, cookies=cookies,
+                                headers=headers, verify=False)
+        print(response)
+        with open(f"{self.temp_dir}.pdf", "wb") as f:
+            f.write(response.content)
+        if os.path.isfile(f"{self.temp_dir}.pdf"):
+            return f"{self.temp_dir}.pdf"
 
                 if os.path.isfile(f"{name}.mkv"):
                     filename = f"{name}.mkv"
